@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,8 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -47,13 +50,32 @@ public class RegisterActivity extends AppCompatActivity {
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String id = auth.getCurrentUser().getUid();
-                        User user = new User(email, username);
-                        Map<String, User> users = new HashMap<>();
-                        users.put(id, user);
-                        reference.setValue(users);
-                        Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        if (auth.getCurrentUser() != null)
+                        {
+                            String id = auth.getCurrentUser().getUid();
+                            User user = new User(email, username);
+                            Map<String, User> users = new HashMap<>();
+                            users.put(id, user);
+                            reference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                                @Override
+                                public void onSuccess(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot child: dataSnapshot.getChildren()) {
+                                        String oldId = child.getKey();
+                                        GenericTypeIndicator<User> t = new GenericTypeIndicator<User>() {};
+                                        User oldUser = child.getValue(t);
+                                        users.put(oldId,oldUser);
+                                        Log.d("x", oldId);
+                                    }
+                                    reference.setValue(users);
+                                    Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                }
+                            });
+
+                        }
+                        else {
+                            Toast.makeText(RegisterActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

@@ -6,20 +6,26 @@ import java.util.List;
 public class User {
     String email;
     String username;
-    List<Movie> watchList;
-    List<People> favouriteCelebs;
+    List<String> watchList;
 
     public User()
     {
         email = "";
         username = "";
-        watchList = new ArrayList<Movie>();
-        favouriteCelebs = new ArrayList<People>();
+        watchList = new ArrayList<String>();
     }
     public User(String email, String username)
     {
         this.email = email;
         this.username = username;
+    }
+    public User(String email, String username, List<String> watchList)
+    {
+        this.email = email;
+        this.username = username;
+        for (String id : watchList) {
+            this.watchList.add(id);
+        }
     }
 
     public String getEmail() {
@@ -34,16 +40,8 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-    public List<Movie> getWatchList() {
+    public List<String> getWatchList() {
         return watchList;
     }
-    public void setWatchList(List<Movie> watchList) {
-        this.watchList = watchList;
-    }
-    public List<People> getFavouriteCelebs() {
-        return favouriteCelebs;
-    }
-    public void setFavouriteCelebs(List<People> favouriteCelebs) {
-        this.favouriteCelebs = favouriteCelebs;
-    }
+
 }
