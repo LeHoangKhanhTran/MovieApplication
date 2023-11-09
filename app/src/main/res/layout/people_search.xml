@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Robert Downey Jr"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/people_img"
         app:layout_constraintEnd_toEndOf="parent"

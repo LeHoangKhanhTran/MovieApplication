@@ -38,10 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/poster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/poster"
@@ -55,7 +54,7 @@
             android:layout_marginTop="20dp"
             android:text="Genres:"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/background" />
 
@@ -65,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/summary"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView6" />
@@ -80,15 +79,15 @@
             android:backgroundTint="@color/pink"
             android:drawableLeft="@drawable/ic_add_foreground"
             android:paddingTop="8dp"
-            android:paddingRight="120dp"
+            android:paddingRight="90dp"
             android:paddingBottom="8dp"
             android:text="Add to Watchlist"
             android:textSize="22sp"
+            android:visibility="gone"
             app:cornerRadius="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/poster"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toBottomOf="@+id/poster" />
 
         <Button
             android:id="@+id/undo_button"
@@ -100,16 +99,16 @@
             android:backgroundTint="#e6e9eb"
             android:drawableLeft="@drawable/ic_check_foreground"
             android:paddingTop="8dp"
-            android:paddingRight="120dp"
+            android:paddingRight="90dp"
             android:paddingBottom="8dp"
             android:text="Added to Watchlist"
             android:textColor="@color/darkblue"
             android:textSize="22sp"
+            android:visibility="gone"
             app:cornerRadius="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/poster"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toBottomOf="@+id/poster" />
 
         <TextView
             android:id="@+id/textView8"
@@ -118,7 +117,7 @@
             android:layout_marginTop="100dp"
             android:text="Director:"
             android:textColor="@color/white"
-            android:textSize="21sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/poster" />
 
@@ -129,7 +128,7 @@
             android:layout_marginTop="15dp"
             android:text="Writer:"
             android:textColor="@color/white"
-            android:textSize="21sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -139,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textColor="@color/white"
-            android:textSize="21sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toTopOf="@+id/textView8" />
 
@@ -149,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textColor="@color/white"
-            android:textSize="21sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -160,7 +159,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,7 +223,7 @@
             android:layout_marginTop="30dp"
             android:text="Main Cast"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 

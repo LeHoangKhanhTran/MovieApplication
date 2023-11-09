@@ -64,7 +64,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         GenericTypeIndicator<User> t = new GenericTypeIndicator<User>() {};
                                         User oldUser = child.getValue(t);
                                         users.put(oldId,oldUser);
-                                        Log.d("x", oldId);
                                     }
                                     reference.setValue(users);
                                     Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
