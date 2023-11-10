@@ -47,36 +47,51 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = usernameTV.getText().toString();
                 String email = emailTV.getText().toString();
                 String password = passwordTV.getText().toString();
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (auth.getCurrentUser() != null)
-                        {
-                            String id = auth.getCurrentUser().getUid();
-                            User user = new User(email, username);
-                            Map<String, User> users = new HashMap<>();
-                            users.put(id, user);
-                            reference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                                @Override
-                                public void onSuccess(DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot child: dataSnapshot.getChildren()) {
-                                        String oldId = child.getKey();
-                                        GenericTypeIndicator<User> t = new GenericTypeIndicator<User>() {};
-                                        User oldUser = child.getValue(t);
-                                        users.put(oldId,oldUser);
+                if (username.length() > 0 && email.length() > 0 && password.length() > 0)
+                {
+                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (auth.getCurrentUser() != null)
+                            {
+                                String id = auth.getCurrentUser().getUid();
+                                User user = new User(email, username);
+                                Map<String, User> users = new HashMap<>();
+                                users.put(id, user);
+                                reference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot child: dataSnapshot.getChildren()) {
+                                            String oldId = child.getKey();
+                                            GenericTypeIndicator<User> t = new GenericTypeIndicator<User>() {};
+                                            User oldUser = child.getValue(t);
+                                            users.put(oldId,oldUser);
+                                        }
+                                        reference.setValue(users);
+                                        Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                     }
-                                    reference.setValue(users);
-                                    Toast.makeText(RegisterActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                }
-                            });
+                                });
 
+                            }
+                            else {
+                                Toast.makeText(RegisterActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else {
-                            Toast.makeText(RegisterActivity.this, "Please try again.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+                }
+                else if (username.length() == 0)
+                {
+                    Toast.makeText(RegisterActivity.this, "Please provide a username.", Toast.LENGTH_SHORT).show();
+                }
+                else if (email.length() == 0)
+                {
+                    Toast.makeText(RegisterActivity.this, "Please provide an email.", Toast.LENGTH_SHORT).show();
+                }
+                else if (password.length() == 0)
+                {
+                    Toast.makeText(RegisterActivity.this, "Please provide a password.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

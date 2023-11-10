@@ -153,8 +153,12 @@ public class YouFragment extends Fragment {
         if (item.getItemId() == R.id.sign_out)
         {
             FirebaseAuth.getInstance().signOut();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("mySharedPref", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear().commit();
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
+            getActivity().finish();
         }
         return super.onOptionsItemSelected(item);
     }

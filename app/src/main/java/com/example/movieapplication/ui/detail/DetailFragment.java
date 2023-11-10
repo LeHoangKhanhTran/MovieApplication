@@ -85,6 +85,7 @@ public class DetailFragment extends Fragment {
                 if (watchlist.contains(movie.getMovieId()))
                 {
                     binding.undoButton.setVisibility(View.VISIBLE);
+                    Log.d("x", movie.getMovieId());
                 }
                 else {
                     binding.addButton.setVisibility(View.VISIBLE);
